@@ -14,13 +14,12 @@ export async function POST(req: Request): Promise<Response> {
     const input = JSON.stringify({ grid, start, end, algorithm });
     console.log('Preparing input for C++ executable:', input);
 
-    // Create a temporary file with a unique name
-    const tempDir = path.join(process.cwd(), 'temp');
-    await fs.mkdir(tempDir, { recursive: true });
+    // Use the writable /tmp directory in serverless environments
+    const tempDir = path.join('/tmp');
     const tempFileName = `input_${uuidv4()}.json`;
     const tempFilePath = path.join(tempDir, tempFileName);
-    await fs.writeFile(tempFilePath, input);
 
+    await fs.writeFile(tempFilePath, input);
     console.log('Temporary file created:', tempFilePath);
 
     // Spawn the C++ process and wait for completion
@@ -39,7 +38,11 @@ export async function POST(req: Request): Promise<Response> {
 
       process.on('close', async (code) => {
         // Clean up temporary file
-        await fs.unlink(tempFilePath);
+        try {
+          await fs.unlink(tempFilePath);
+        } catch (cleanupError) {
+          console.warn('Error cleaning up temporary file:', cleanupError);
+        }
 
         console.log('C++ executable output:', output);
         console.log('C++ executable error output:', errorOutput);
