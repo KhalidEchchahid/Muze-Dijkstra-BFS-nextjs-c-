@@ -49,22 +49,18 @@ Ensure you have the following installed:
 ### Steps
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-repo/maze-pathfinding-visualizer.git
-   cd maze-pathfinding-visualizer
+   git clone https://github.com/khalidEchchahid/Muze-Dijkstra-BFS-nextjs-c-.git
    ```
 2. **Install dependencies:**
    ```bash
    npm install
    ```
-3. **Build and run the C++ backend:**
-   ```bash
-   g++ -o Muze-backend Muze-backend.cpp PathFinder.cpp -std=c++11
-   ```
-4. **Start the Next.js server:**
+
+3. **Start the Next.js server:**
    ```bash
    npm run dev
    ```
-5. Open your browser and go to `http://localhost:3000`
+4. Open your browser and go to `http://localhost:3000`
 
 ---
 
@@ -73,7 +69,7 @@ Ensure you have the following installed:
 - **Choose an algorithm** (Dijkstra or BFS) from the options.
 - Click **Run Algorithm** to visualize the pathfinding process.
 - Compare performance metrics displayed in real-time.
-
+You can also click on Start tutrial  in the  navbar to learn more 
 ---
 
 ## Technologies Used
