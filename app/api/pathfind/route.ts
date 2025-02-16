@@ -14,7 +14,6 @@ export async function POST(req: Request): Promise<Response> {
     const input = JSON.stringify({ grid, start, end, algorithm });
     console.log('Preparing input for C++ executable:', input);
 
-    // Use the writable /tmp directory in serverless environments
     const tempDir = path.join('/tmp');
     const tempFileName = `input_${uuidv4()}.json`;
     const tempFilePath = path.join(tempDir, tempFileName);
